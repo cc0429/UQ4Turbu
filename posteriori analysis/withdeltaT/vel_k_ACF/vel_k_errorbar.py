@@ -1,0 +1,1325 @@
+"""
+@author: admin
+"""
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import os
+import matplotlib as mpl
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker  
+import numpy as np
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.serif'] = ['Times', 'Times', 'STIXGeneral']
+case_number_list =[30]
+vel_k_list = [1,2,3,4,5,6,7,8,9,10]
+
+for k, case_number in enumerate(case_number_list):
+    for kk, vel_k in enumerate(vel_k_list):
+    #-------------------------------------------------------------读入数据，
+
+
+        fDNS_20 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_fDNS_k={}.dat".format(case_number,vel_k), dtype=float)
+        IUFNO_20 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_20 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_20 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_20 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        DSM_20 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_DSM_k={}.dat".format(case_number,vel_k), dtype=float)
+        
+        fDNS_40 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_fDNS_k={}.dat".format(case_number,vel_k), dtype=float)
+        IUFNO_40 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_40 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_40 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_40 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        DSM_40 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_DSM_k={}.dat".format(case_number,vel_k), dtype=float)
+        
+        fDNS_100 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_fDNS_k={}.dat".format(case_number,vel_k), dtype=float)
+        IUFNO_100 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_100 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_100 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_100 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        DSM_100 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_DSM_k={}.dat".format(case_number,vel_k), dtype=float)    
+        
+        fDNS_200 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_new/PDF/vel_k/result/{}cases/error_with_time_fDNS_k={}.dat".format(case_number,vel_k), dtype=float)
+        IUFNO_200 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_new/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_200 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_new/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_200 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_new/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_200 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_new/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        DSM_200 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_new/PDF/vel_k/result/{}cases/error_with_time_DSM_k={}.dat".format(case_number,vel_k), dtype=float)    
+
+        fDNS_300 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_fDNS_k={}.dat".format(case_number,vel_k), dtype=float)
+        IUFNO_300 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_300 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_300 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_300 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        DSM_300 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_DSM_k={}.dat".format(case_number,vel_k), dtype=float)    
+            
+        fDNS_400 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_fDNS_k={}.dat".format(case_number,vel_k), dtype=float)
+        IUFNO_400 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_400 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_400 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_400 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        DSM_400 = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python/PDF/vel_k/result/{}cases/error_with_time_DSM_k={}.dat".format(case_number,vel_k), dtype=float)    
+            
+        IUFNO_20_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_20_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_20_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_20_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_200gap_4_20gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        
+        IUFNO_40_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_40_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_40_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_40_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_40gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        
+        IUFNO_100_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_100_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_100_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_100_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_100gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)    
+        
+        IUFNO_200_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_200_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_200_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_200_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)    
+
+        IUFNO_300_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_300_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_300_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_300_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_300gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)  
+     
+        IUFNO_400_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IUFNO_400_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IUFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        F_IFNO_400_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_F_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)
+        IFNO_400_k = np.loadtxt("../../m12w90n40g45fac4nff2seed0_lr5e-4_bs5_400gap/AVG/plot_python_k/PDF/vel_k/result/{}cases/error_with_time_IFNO_k={}.dat".format(case_number,vel_k), dtype=float)  
+        
+        ACF_data_1 = np.loadtxt("../acf/acf_avg_k=1.dat", dtype=float)
+        ACF_1 = ACF_data_1[:6, 1]
+        ACF_data_2 = np.loadtxt("../acf/acf_avg_k=2.dat", dtype=float)
+        ACF_2 = ACF_data_2[:6, 1]
+        ACF_data_3 = np.loadtxt("../acf/acf_avg_k=3.dat", dtype=float)
+        ACF_3 = ACF_data_3[:6, 1]
+        ACF_data_4 = np.loadtxt("../acf/acf_avg_k=4.dat", dtype=float)
+        ACF_4 = ACF_data_4[:6, 1]
+        ACF_data_5 = np.loadtxt("../acf/acf_avg_k=5.dat", dtype=float)
+        ACF_5 = ACF_data_5[:6, 1]
+        ACF_data_6 = np.loadtxt("../acf/acf_avg_k=6.dat", dtype=float)
+        ACF_6 = ACF_data_6[:6, 1]
+        ACF_data_7 = np.loadtxt("../acf/acf_avg_k=7.dat", dtype=float)
+        ACF_7 = ACF_data_7[:6, 1]
+        ACF_data_8 = np.loadtxt("../acf/acf_avg_k=8.dat", dtype=float)
+        ACF_8 = ACF_data_8[:6, 1]
+        ACF_data_9 = np.loadtxt("../acf/acf_avg_k=9.dat", dtype=float)
+        ACF_9 = ACF_data_9[:6, 1]
+        ACF_data_10 = np.loadtxt("../acf/acf_avg_k=10.dat", dtype=float)
+        ACF_10 = ACF_data_10[:6, 1]  
+
+        acf_dict = {
+            1: ACF_1,
+            2: ACF_2,
+            3: ACF_3,
+            4: ACF_4,
+            5: ACF_5,
+            6: ACF_6,
+            7: ACF_7,
+            8: ACF_8,            
+            9: ACF_9,
+            10: ACF_10             
+        }
+
+
+        
+        #-------------------------输入参数
+        # time_advance=[20]  #挑推进时间画图
+        # time_advance=[40]  #挑推进时间画图
+        #time_advance=[1,2,3,10,15,20,25,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250]  #挑推进时间画图
+        data1=F_IFNO_20_k[:,1]
+        data2=F_IUFNO_20_k[:,1]
+        data3=IUFNO_20_k[:,1]
+        data4=IFNO_20_k[:,1]
+        data5=F_IFNO_20[:,1]
+        data6=F_IUFNO_20[:,1]
+        data7=IUFNO_20[:,1]
+        data8=IFNO_20[:,1]       
+        data9=DSM_20[:,1]
+        data10=fDNS_20[:,1]
+
+        data11=F_IFNO_40_k[:,1]
+        data12=F_IUFNO_40_k[:,1]
+        data13=IUFNO_40_k[:,1]
+        data14=IFNO_40_k[:,1]
+        data15=F_IFNO_40[:,1]
+        data16=F_IUFNO_40[:,1]
+        data17=IUFNO_40[:,1]
+        data18=IFNO_40[:,1]       
+        data19=DSM_40[:,1]
+        data20=fDNS_40[:,1]
+
+        data21=F_IFNO_100_k[:,1]
+        data22=F_IUFNO_100_k[:,1]
+        data23=IUFNO_100_k[:,1]
+        data24=IFNO_100_k[:,1]
+        data25=F_IFNO_100[:,1]
+        data26=F_IUFNO_100[:,1]
+        data27=IUFNO_100[:,1]
+        data28=IFNO_100[:,1]       
+        data29=DSM_100[:,1]
+        data30=fDNS_100[:,1]
+
+        data31=F_IFNO_200_k[:,1]
+        data32=F_IUFNO_200_k[:,1]
+        data33=IUFNO_200_k[:,1]
+        data34=IFNO_200_k[:,1]
+        data35=F_IFNO_200[:,1]
+        data36=F_IUFNO_200[:,1]
+        data37=IUFNO_200[:,1]
+        data38=IFNO_200[:,1]       
+        data39=DSM_200[:,1]
+        data40=fDNS_200[:,1]
+
+        data41=F_IFNO_300_k[:,1]
+        data42=F_IUFNO_300_k[:,1]
+        data43=IUFNO_300_k[:,1]
+        data44=IFNO_300_k[:,1]
+        data45=F_IFNO_300[:,1]
+        data46=F_IUFNO_300[:,1]
+        data47=IUFNO_300[:,1]
+        data48=IFNO_300[:,1]       
+        data49=DSM_300[:,1]
+        data50=fDNS_300[:,1]
+
+        data51=F_IFNO_400_k[:,1]
+        data52=F_IUFNO_400_k[:,1]
+        data53=IUFNO_400_k[:,1]
+        data54=IFNO_400_k[:,1]
+        data55=F_IFNO_400[:,1]
+        data56=F_IUFNO_400[:,1]
+        data57=IUFNO_400[:,1]
+        data58=IFNO_400[:,1]       
+        data59=DSM_400[:,1]
+        data60=fDNS_400[:,1]
+
+
+        data_list = [globals()[f"data{i}"] for i in range(1, 61)]
+
+
+        avg_results = []
+        avg_error = []
+        variance_error = []
+
+        # 遍历每个数据集计算 RMS、平均值和方差
+        for i, data in enumerate(data_list, start=1):
+            # 计算 RMS 误差
+            avg_error1 = np.mean(data)
+            
+            # 计算误差的方差
+            variance_error1 = np.var(data)
+            
+            avg_result = f"{avg_error1:.8f} ± {variance_error1:.8f}"
+            
+            avg_error.append(avg_error1)
+            variance_error.append(variance_error1)
+            avg_results.append(avg_result)
+
+        # 定义颜色列表
+        color_palette = [
+            '#3b0a57',  # 深紫
+            '#1e3da0',  # 靛蓝
+            '#1f8f8c',  # 青绿
+            'green',  #绿
+            '#b6dc59',  # 黄绿过渡
+            '#f4eb37'   # 鲜亮黄
+        ]
+
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO_constrained", "F-IUFNO_constrained", "IUFNO_constrained", "IFNO_constrained","F-IFNO_unconstrained", "F-IUFNO_unconstrained", "IUFNO_unconstrained", "IFNO_unconstrained","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_F_IFNO_k, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=4)
+        plt.errorbar(x1, mean1_F_IFNO_k, yerr=std1_F_IFNO_k, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[0],zorder=4)
+
+        plt.plot(x1, mean1_F_IFNO, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_F_IFNO, yerr=std1_F_IFNO, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[4],zorder=0)
+
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=2)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=3)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) F-IFNO_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()
+        
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO_constrained", "F-IUFNO_constrained", "IUFNO_constrained", "IFNO_constrained","F-IFNO_unconstrained", "F-IUFNO_unconstrained", "IUFNO_unconstrained", "IFNO_unconstrained","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_F_IUFNO_k, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=4)
+        plt.errorbar(x1, mean1_F_IUFNO_k, yerr=std1_F_IUFNO_k, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[1],zorder=4)
+
+        plt.plot(x1, mean1_F_IUFNO, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_F_IUFNO, yerr=std1_F_IUFNO, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[5],zorder=0)
+
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=2)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=3)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) F-IUFNO_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()  
+        
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO_constrained", "F-IUFNO_constrained", "IUFNO_constrained", "IFNO_constrained","F-IFNO_unconstrained", "F-IUFNO_unconstrained", "IUFNO_unconstrained", "IFNO_unconstrained","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_IUFNO_k, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=4)
+        plt.errorbar(x1, mean1_IUFNO_k, yerr=std1_IUFNO_k, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[2],zorder=4)
+
+        plt.plot(x1, mean1_IUFNO, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_IUFNO, yerr=std1_IUFNO, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[6],zorder=0)
+
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=2)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=3)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) IUFNO_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()      
+        
+        
+        
+        
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO_constrained", "F-IUFNO_constrained", "IUFNO_constrained", "IFNO_constrained","F-IFNO_unconstrained", "F-IUFNO_unconstrained", "IUFNO_unconstrained", "IFNO_unconstrained","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_IFNO_k, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=4)
+        plt.errorbar(x1, mean1_IFNO_k, yerr=std1_IFNO_k, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[3],zorder=4)
+
+        plt.plot(x1, mean1_IFNO, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_IFNO, yerr=std1_IFNO, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[7],zorder=0)
+
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=2)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=3)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) IFNO_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()     
+        
+        
+        
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO", "F-IUFNO", "IUFNO", "IFNO","F-IFNO", "F-IUFNO", "IUFNO", "IFNO","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_F_IFNO_k, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_F_IFNO_k, yerr=std1_F_IFNO_k, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[0],zorder=3)
+
+        plt.plot(x1, mean1_F_IUFNO_k, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_F_IUFNO_k, yerr=std1_F_IUFNO_k, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[1],zorder=2)
+
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=0)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=1)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=1)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) with4_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()     
+       
+       
+       
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO", "F-IUFNO", "IUFNO", "IFNO","F-IFNO", "F-IUFNO", "IUFNO", "IFNO","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_F_IFNO_k, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=5)
+        plt.errorbar(x1, mean1_F_IFNO_k, yerr=std1_F_IFNO_k, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[0],zorder=5)
+
+        plt.plot(x1, mean1_F_IUFNO_k, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=4)
+        plt.errorbar(x1, mean1_F_IUFNO_k, yerr=std1_F_IUFNO_k, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[1],zorder=4)
+        
+        plt.plot(x1, mean1_IUFNO_k, color=color_palette[2], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_IUFNO_k, yerr=std1_IUFNO_k, fmt='o', color=color_palette[2], ecolor=color_palette[2], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[2],zorder=3)
+
+        plt.plot(x1, mean1_IFNO_k, color=color_palette[3], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_IFNO_k, yerr=std1_IFNO_k, fmt='o', color=color_palette[3], ecolor=color_palette[3], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[3],zorder=2)
+        
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=0)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=1)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=1)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) with6_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()      
+
+            
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO", "F-IUFNO", "IUFNO", "IFNO","F-IFNO", "F-IUFNO", "IUFNO", "IFNO","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_F_IFNO, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_F_IFNO, yerr=std1_F_IFNO, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[4],zorder=3)
+
+        plt.plot(x1, mean1_F_IUFNO, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_F_IUFNO, yerr=std1_F_IUFNO, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[5],zorder=2)
+
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=0)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=1)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=1)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) without4_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()     
+        
+        
+        
+        ######----------------------------x=model----------------------------########
+        # 图形参数设置
+        dpi = 600
+        width, height = 10, 6
+        fontSize = 30
+        lineWidth = 2
+        boxWidth = 2.5
+        Lmajor, Lminor = 7, 4
+        xlabPad, ylabPad = 10, 10
+        xlabel = r"$\mathdefault{f_{ac}(k)}$"
+        ylabel = r"$\mathdefault{{Errorbar \ for \ E(k={})}}$".format(vel_k)
+        #xlimit=[0,0.42]
+        #ylimit = [-0.18,0.04]
+        legend = ["F-IFNO", "F-IUFNO", "IUFNO", "IFNO","F-IFNO", "F-IUFNO", "IUFNO", "IFNO","DSM","fDNS"]
+
+        fig = plt.figure(figsize=(width, height), dpi=dpi)
+        plt.rcParams["font.size"] = fontSize
+        plt.rcParams["axes.linewidth"] = lineWidth
+        ax = fig.add_axes([0, 0, 1, 1])
+        # X 轴设置
+        ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
+        ax.xaxis.set_major_formatter(mpl.ticker.FormatStrFormatter('%1.2f'))
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(5))
+        plt.yscale("linear")
+        ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6, min_n_ticks=5))  # Automatically set major ticks
+        ax.yaxis.set_minor_locator(ticker.AutoMinorLocator(5))  # Automatically set minor ticks to be 5 times finer than major ticks
+        ax.autoscale(enable=True, axis='y', tight=False)
+        ax.yaxis.set_major_formatter(mpl.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())    
+
+        # 坐标轴和刻度设置
+        ax.spines['right'].set_visible(True)
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_linewidth(boxWidth)
+        ax.spines['left'].set_linewidth(boxWidth)
+        ax.spines['top'].set_linewidth(boxWidth)
+        ax.spines['right'].set_linewidth(boxWidth)
+
+        ax.xaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.xaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=xlabPad, top=False)
+        ax.yaxis.set_tick_params(which='major', size=Lmajor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+        ax.yaxis.set_tick_params(which='minor', size=Lminor, width=boxWidth, direction='in', pad=ylabPad, right=False)
+
+        plt.xlabel(xlabel, fontsize=30)
+        plt.ylabel(ylabel, fontsize=30)
+        #ax.set_xlim(xlimit[0], xlimit[1]) 
+        plt.xticks(fontsize=30)
+        plt.yticks(fontsize=30)   
+
+        # Matplotlib 配置
+        mpl.rc('font', family='STIXGeneral')
+        mpl.rc('text', usetex=False)
+        mpl.rcParams['xtick.direction'] = 'in'
+        mpl.rcParams['ytick.direction'] = 'in'
+        plt.rcParams["mathtext.fontset"] = "cm"
+
+        x1 = acf_dict.get(vel_k)
+        iii=0
+        mean1_F_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=1
+        mean1_F_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=2
+        mean1_IUFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=3
+        mean1_IFNO_k = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO_k = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=4
+        mean1_F_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=5
+        mean1_F_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_F_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=6
+        mean1_IUFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IUFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=7
+        mean1_IFNO = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_IFNO = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=8
+        mean1_DSM = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_DSM = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+        iii=9
+        mean1_fDNS = [avg_error[iii+0],avg_error[iii+10],avg_error[iii+20],avg_error[iii+30],avg_error[iii+40],avg_error[iii+50]]
+        std1_fDNS = [variance_error[iii+0],variance_error[iii+10],variance_error[iii+20],variance_error[iii+30],variance_error[iii+40],variance_error[iii+50]]
+
+
+
+        plt.plot(x1, mean1_F_IFNO, color=color_palette[0], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=5)
+        plt.errorbar(x1, mean1_F_IFNO, yerr=std1_F_IFNO, fmt='o', color=color_palette[0], ecolor=color_palette[0], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[4],zorder=5)
+
+        plt.plot(x1, mean1_F_IUFNO, color=color_palette[1], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=4)
+        plt.errorbar(x1, mean1_F_IUFNO, yerr=std1_F_IUFNO, fmt='o', color=color_palette[1], ecolor=color_palette[1], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[5],zorder=4)
+        
+        plt.plot(x1, mean1_IUFNO, color=color_palette[2], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=3)
+        plt.errorbar(x1, mean1_IUFNO, yerr=std1_IUFNO, fmt='o', color=color_palette[2], ecolor=color_palette[2], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[6],zorder=3)
+
+        plt.plot(x1, mean1_IFNO, color=color_palette[3], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=2)
+        plt.errorbar(x1, mean1_IFNO, yerr=std1_IFNO, fmt='o', color=color_palette[3], ecolor=color_palette[3], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[7],zorder=2)
+        
+        plt.plot(x1, mean1_DSM, color=color_palette[4], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=0)
+        plt.errorbar(x1, mean1_DSM, yerr=std1_DSM, fmt='o', color=color_palette[4], ecolor=color_palette[4], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[8],zorder=0)
+
+        plt.plot(x1, mean1_fDNS, color=color_palette[5], alpha=0.3, linewidth=2*lineWidth, linestyle='--',zorder=1)
+        plt.errorbar(x1, mean1_fDNS, yerr=std1_fDNS, fmt='o', color=color_palette[5], ecolor=color_palette[5], capsize=8, elinewidth=4, markeredgewidth=4, label=legend[9],zorder=1)
+
+        # Matplotlib 配置 - 全局字体设置为 STIXGeneral
+        mpl.rc('font', family='STIXGeneral')
+        # 创建图例
+        #plt.title(r"Errorbar for Ek", fontsize=25, color='black', loc='center', pad=15)
+        '''lgd = plt.legend(
+            loc='best',       # 自动选择最优位置
+            fontsize=25,
+            frameon=True,
+            framealpha=0,
+            edgecolor='black',
+            shadow=False
+        )'''
+        # 显示网格
+        #plt.grid()
+        figPath1 = os.path.abspath("./vel_k_errorbar/{}cases/k={}".format(case_number,vel_k))
+        gfile1 = "Errorbar for E(k={}) without6_label.png".format(vel_k)
+        gpath1 = os.path.join(figPath1, gfile1)
+        # 保存图形
+        plt.savefig(gpath1, bbox_inches='tight')
+        plt.close()      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
