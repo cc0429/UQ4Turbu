@@ -59,7 +59,7 @@ The fDNS dataset used in the paper contains filtered velocity fields with shape:
 
 **Download**:
 - The datasets for training, testing and predicting are available on Kaggle: 
-  [https://www.kaggle.com/datasets/XintongZou_Cecilie/Dataset4Turbulence](https://www.kaggle.com/datasets/XintongZou_Cecilie/Dataset4Turbulence).
+  [https://www.kaggle.com/datasets/XintongZou_Cecilie/Dataset4Turbulence](https://www.kaggle.com/datasets/xintongzoucecilie/dataset4turbulence).
 
 **Directory layout**:
 ```text
